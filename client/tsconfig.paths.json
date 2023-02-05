@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@store": [
+        "./src/store/exports.ts"
+      ],
+      "@features/counter": [
+        "./src/features/counter/exports.ts"
+      ],
+      "@components": [
+        "./src/components/exports.ts"
+      ],
+    }
+  }
+}

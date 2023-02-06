@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '@store';
-import * as fromCounter from '@features/counter';
+import { useAppSelector, useAppDispatch } from '../../store';
+import * as fromCounter from '../../features/counter';
 
 import styles from './Counter.module.css';
 

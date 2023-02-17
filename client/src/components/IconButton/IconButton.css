@@ -1,0 +1,32 @@
+.icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5em;
+    min-width: 2.5em;
+    padding: 0;
+
+    line-height: 0;
+
+    border: none;
+    border-radius: 50%;
+    background: none;
+}
+
+.icon-btn.sm {
+    font-size: 0.8rem;
+}
+.icon-btn.md {
+    font-size: 1rem;
+}
+.icon-btn.lg {
+    font-size: 1.2rem;
+}
+
+.icon-btn:hover, .icon-btn:focus {
+    background-color: #f1f1f1;
+}
+
+.icon-btn:active {
+    background-color: #eaeaea;
+}

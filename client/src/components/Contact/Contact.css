@@ -1,0 +1,9 @@
+.contact .image-placeholder {
+    display: inline-block;
+
+    width: 100%;
+    height: auto;
+
+    background-color: #d2a7d9;
+    border-radius: 50%;
+}

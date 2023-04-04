@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/auth', authRouter);
-app.use('/api/auth', userRouter);
+app.use('/api', userRouter);
 
 app.use(errorMiddleware);
 

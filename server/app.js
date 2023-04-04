@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 const errorMiddleware = require('./app/middlewares/error.middleware')
 
-const authRouter = require('./app/routers/auth.router')
+const authRouter = require('./app/routers/auth.router');
+const userRouter = require('./app/routers/user.router');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -16,6 +17,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/auth', authRouter);
+app.use('/api/auth', userRouter);
 
 app.use(errorMiddleware);
 

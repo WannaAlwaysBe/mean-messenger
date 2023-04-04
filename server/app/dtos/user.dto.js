@@ -1,11 +1,12 @@
 class UserDto {
 
 	id;
-	phone;
+	username;
 
 	constructor(model) {
 		this.id = model._id;
-		this.phone = model.phone;
+		this.username = model.username;
+		this.hex = model.hex;
 	}
 }
 

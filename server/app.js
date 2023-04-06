@@ -8,6 +8,7 @@ const errorMiddleware = require('./app/middlewares/error.middleware')
 
 const authRouter = require('./app/routers/auth.router');
 const userRouter = require('./app/routers/user.router');
+const chatRouter = require('./app/routers/chat.router');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -17,7 +18,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/auth', authRouter);
-app.use('/api', userRouter);
+app.use('/api', userRouter, chatRouter);
 
 app.use(errorMiddleware);
 

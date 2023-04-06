@@ -13,7 +13,7 @@ class UserService {
 
 		users = users.map((user) => {
 			return new UserDto(user);
-		})
+		});
 
 		return {users};
 	}

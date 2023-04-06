@@ -2,6 +2,7 @@ class UserDto {
 
 	id;
 	username;
+	hex;
 
 	constructor(model) {
 		this.id = model._id;

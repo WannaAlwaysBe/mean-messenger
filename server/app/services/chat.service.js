@@ -2,7 +2,6 @@ const chatModel = require('../models/chat.model');
 const userModel = require('../models/user.model');
 const messageModel = require('../models/message.model');
 const ChatDto = require('../dtos/chat.dto');
-const UserDto = require("../dtos/user.dto");
 const ApiError = require('../exceptions/api.error');
 
 class ChatService {
@@ -18,7 +17,7 @@ class ChatService {
 			return chat;
 		}));
 
-		return {chats};
+		return chats;
 	}
 
 	async createChat(receiverId, senderId) {
@@ -54,9 +53,7 @@ class ChatService {
 
 		chat = await chat.populate('users');
 
-		const chatDto = new ChatDto(chat, senderId);
-
-		return {chat: chatDto};
+		return new ChatDto(chat, senderId);
 	}
 }
 

@@ -9,6 +9,7 @@ import { AppCommonModule } from '@common';
 import { AuthRestModule } from '@data-layer/auth';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { UserDataService } from '@data-layer/user';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,9 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     AppCommonModule,
     NbButtonModule,
     AuthRestModule,
+  ],
+  providers: [
+    UserDataService,
   ]
 })
 export class LoginModule { }

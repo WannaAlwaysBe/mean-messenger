@@ -12,8 +12,8 @@ import { UserDataService } from './services/user-data.service';
   providers: [UserDataService],
   imports: [
     UserRestModule,
-    StoreModule.forFeature(featureKey, [featureReducer]),
-    EffectsModule.forFeature(UserEffects)
+    StoreModule.forFeature(featureKey, featureReducer),
+    EffectsModule.forFeature([UserEffects]),
   ]
 })
 export class UserDataModule { }

@@ -7,7 +7,7 @@ class UserService {
 		let user = await userModel.findById(uid);
 		user = new UserDto(user);
 
-		return {user};
+		return user;
 	}
 
 	async getUsers(start) {
@@ -22,18 +22,16 @@ class UserService {
 			return new UserDto(user);
 		});
 
-		return {users};
+		return users;
 	}
 
 	getUsersByStart(start) {
-		const users = userModel.find({
+		return userModel.find({
 			'username': {
 				$regex: '^' + start,
 				$options: 'i'
 			}
 		}).limit(10);
-
-		return users;
 	}
 }
 

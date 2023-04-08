@@ -16,3 +16,7 @@ export * from './control-errors/control-errors.component';
 
 // Pipes
 export * from './pipes/name-icon.pipe';
+
+// Interceptors
+export * from './interceptors/base-url.interceptor';
+export * from './interceptors/token.interceptor';

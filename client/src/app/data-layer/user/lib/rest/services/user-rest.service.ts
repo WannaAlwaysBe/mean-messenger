@@ -10,8 +10,8 @@ import { User } from '@data-layer/user';
   providedIn: 'root'
 })
 export class UserRestService {
-  private usersUrl = '/api/users';
-  private currentUserUrl = '/api/user';
+  private usersUrl = '/users';
+  private currentUserUrl = '/user';
 
   constructor(
     private http: HttpClient,

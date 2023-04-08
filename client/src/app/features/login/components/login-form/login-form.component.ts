@@ -2,12 +2,13 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 
+import {BehaviorSubject} from 'rxjs';
+
 import {LocalStorageService} from '@common';
 
 import {AuthRestService, LoginData} from '@data-layer/auth';
 
 import {LoginFormBuilderService} from '../../services/login.form-builder.service';
-import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-login-form',

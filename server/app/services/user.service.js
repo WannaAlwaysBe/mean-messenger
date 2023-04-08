@@ -3,6 +3,13 @@ const UserDto = require('../dtos/user.dto');
 
 class UserService {
 
+	async getUser(uid) {
+		let user = await userModel.findById(uid);
+		user = new UserDto(user);
+
+		return {user};
+	}
+
 	async getUsers(start) {
 		let users;
 		if (start) {

@@ -45,7 +45,6 @@ class AuthService {
 
 		return {
 			token,
-			user: userDto
 		}
 	}
 
@@ -90,7 +89,6 @@ class AuthService {
 
 		return {
 			token,
-			user: userDto
 		}
 	}
 }

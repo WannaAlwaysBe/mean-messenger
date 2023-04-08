@@ -1,30 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import {NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule} from '@nebular/theme';
+import { NbCardModule, NbLayoutModule } from '@nebular/theme';
 
-import { MainComponent } from './main/main.component';
-import { AppCommonModule } from '../common/common.module';
-import { ChatComponent } from './chat/chat.component';
-import { MessagesListModule } from '../features/messages-list/messages-list.module';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { LoginModule } from '@features/login';
+import { SignupModule } from '@features/signup';
+import { MessagesListModule } from '@features/messages-list';
+import { ChatsListModule } from '@features/cats-list';
+
+import { AppCommonModule } from '@common';
+
+import { MainPageComponent } from './main/main-page.component';
+import { ChatPageComponent } from './chat/chat-page.component';
+import { LoginPageComponent } from './login/login-page.component';
+import { SignupPageComponent } from './signup/signup-page.component';
 
 @NgModule({
-  declarations: [MainComponent, ChatComponent, LoginComponent, SignupComponent],
-  exports: [MainComponent],
-	imports: [
-		CommonModule,
-		AppCommonModule,
-		NbCardModule,
-		RouterOutlet,
-		MessagesListModule,
-		NbInputModule,
-		NbButtonModule,
-		ReactiveFormsModule,
-		NbLayoutModule,
-	]
+  declarations: [MainPageComponent, ChatPageComponent, LoginPageComponent, SignupPageComponent],
+  exports: [MainPageComponent],
+  imports: [
+    CommonModule,
+    AppCommonModule,
+    NbCardModule,
+    RouterOutlet,
+    MessagesListModule,
+    ReactiveFormsModule,
+    NbLayoutModule,
+    LoginModule,
+    SignupModule,
+    ChatsListModule,
+  ]
 })
 export class PagesModule { }

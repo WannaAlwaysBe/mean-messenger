@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainComponent } from './pages/main/main.component';
-import { ChatComponent } from './pages/chat/chat.component';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import { MainPageComponent } from './pages/main/main-page.component';
+import { ChatPageComponent } from './pages/chat/chat-page.component';
+import { LoginPageComponent } from './pages/login/login-page.component';
+import { SignupPageComponent } from './pages/signup/signup-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
-    component: MainComponent,
+    component: MainPageComponent,
     children: [
-      { path: ':chatId', component: ChatComponent },
+      { path: ':chatId', component: ChatPageComponent },
     ],
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginPageComponent,
   },
   {
     path: 'sign-up',
-    component: SignupComponent,
+    component: SignupPageComponent,
   }
 ];
 

@@ -22,7 +22,19 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@features/login": ["src/app/features/login/public_api.ts"],
+      "@features/signup": ["src/app/features/signup/public_api.ts"],
+      "@features/messages-list": ["src/app/features/messages-list/public_api.ts"],
+      "@features/cats-list": ["src/app/features/chats-list/public_api.ts"],
+
+      "@common": ["src/app/common/public_api.ts"],
+
+      "@data-layer/auth": ["src/app/data-layer/auth/public_api.ts"],
+      "@data-layer/chat": ["src/app/data-layer/chat/public_api.ts"],
+      "@data-layer/user": ["src/app/data-layer/user/public_api.ts"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -4,23 +4,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AuthData, NewUserData } from '../../models';
-import { User } from '../../../user/models';
+import { User } from '../../../../user/lib/models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthRestService {
-  public authUrl = '';
+  private registerUrl = '/auth/registration';
+  private loginUrl = '/auth/login';
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  public create(newUserData: NewUserData): Observable<User> {
-    return this.http.post<User>(this.authUrl, newUserData);
+  public register(newUserData: NewUserData): Observable<User> {
+    return this.http.post<User>(this.registerUrl, newUserData);
   }
 
   public login(authData: AuthData): Observable<User> {
-    return this.http.post<User>(this.authUrl, authData);
+    return this.http.post<User>(this.loginUrl, authData);
   }
 }

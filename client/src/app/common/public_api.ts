@@ -19,4 +19,4 @@ export * from './pipes/name-icon.pipe';
 
 // Interceptors
 export * from './interceptors/base-url.interceptor';
-export * from './interceptors/token.interceptor';
+export * from './interceptors/auth.interceptor';

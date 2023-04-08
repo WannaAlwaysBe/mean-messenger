@@ -1,7 +1,14 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
-import {SignupFormBuilderServiceService} from "../../services/signup.form-builder.service.service";
+import {BehaviorSubject} from 'rxjs';
+
+import {AuthRestService, RegisterData} from '@data-layer/auth';
+
+import {LocalStorageService} from '@common';
+
+import {SignupFormBuilderServiceService} from '../../services/signup.form-builder.service.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -11,6 +18,8 @@ import {SignupFormBuilderServiceService} from "../../services/signup.form-builde
   providers: [SignupFormBuilderServiceService],
 })
 export class SignupFormComponent {
+  private responseErrorSubject = new BehaviorSubject(null);
+
   public get phoneControl(): FormControl {
     return this.form.get('phone') as FormControl;
   }
@@ -28,13 +37,32 @@ export class SignupFormComponent {
   }
 
   public form = this.signupFormBuilderService.getForm();
+  public responseError$ = this.responseErrorSubject.asObservable();
 
   constructor(
     private signupFormBuilderService: SignupFormBuilderServiceService,
+    private authRestService: AuthRestService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
   ) {
   }
 
-  public submit(form: FormGroup) {
-    console.log(form);
+  public submit(form: FormGroup): void {
+    const formValue: RegisterData = form.value;
+    const isValid = form.valid;
+
+    this.responseErrorSubject.next(null);
+
+    if (isValid) {
+      this.authRestService.register(formValue).subscribe({
+        next: (res) => {
+          this.localStorageService.setData('token', res.token);
+          this.router.navigate(['home']);
+        },
+        error: () => {
+          this.responseErrorSubject.next('User already exists');
+        }
+      });
+    }
   }
 }

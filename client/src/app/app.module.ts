@@ -9,7 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { NbLayoutModule, NbThemeModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-import { AppCommonModule, TokenInterceptor } from '@common';
+import { AppCommonModule, AuthInterceptor } from '@common';
 import { BaseUrlInterceptor } from '@common';
 
 import { UserDataModule } from '@data-layer/user';
@@ -37,7 +37,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

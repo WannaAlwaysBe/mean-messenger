@@ -1,27 +1,32 @@
 <form class="form" [formGroup]="form" #ngForm="ngForm" (submit)="submit(form)">
   <app-centered-form formTitle="Login">
     <div class="input-wrapper">
-      <app-form-control
-        formControlName="phone"
-        label="Phone number"
-        placeholder="e.g. +380954434223"
-        [submitted]="ngForm.submitted"
-        [errorConfig]="[
+      <div class="input-group">
+        <app-form-control
+          formControlName="phone"
+          label="Phone number"
+          placeholder="e.g. +380954434223"
+          [submitted]="ngForm.submitted"
+          [errorConfig]="[
           {condition: phoneControl.errors?.['required'], text: 'Required'},
           {condition: phoneControl.errors?.['pattern'], text: 'Should be a phone number'},
         ]"
-      ></app-form-control>
+        ></app-form-control>
+      </div>
 
-      <app-form-control
-        formControlName="password"
-        type="password"
-        label="Password"
-        [submitted]="ngForm.submitted"
-        [errorConfig]="[
+      <div class="input-group">
+        <app-form-control
+          formControlName="password"
+          type="password"
+          label="Password"
+          [submitted]="ngForm.submitted"
+          [errorConfig]="[
           {condition: passwordControl.errors?.['required'], text: 'Required'},
         ]"
-      ></app-form-control>
+        ></app-form-control>
+      </div>
     </div>
+    <p class="response-error">{{responseError$ | async}}</p>
     <button nbButton fullWidth status="primary" type="submit">Login</button>
   </app-centered-form>
 </form>

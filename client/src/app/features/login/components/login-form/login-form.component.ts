@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
 import {LocalStorageService} from '@common';
 
-import {UserDataService} from '@data-layer/user';
 import {AuthRestService, LoginData} from '@data-layer/auth';
 
 import {LoginFormBuilderService} from '../../services/login.form-builder.service';
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-login-form',
@@ -16,6 +17,7 @@ import {LoginFormBuilderService} from '../../services/login.form-builder.service
   providers: [LoginFormBuilderService],
 })
 export class LoginFormComponent {
+  private responseErrorSubject = new BehaviorSubject(null);
   public get phoneControl(): FormControl {
     return this.form.get('phone') as FormControl;
   }
@@ -25,22 +27,30 @@ export class LoginFormComponent {
   }
 
   public form = this.loginFormBuilderService.getForm();
+  public responseError$ = this.responseErrorSubject.asObservable();
 
   constructor(
     private authRestService: AuthRestService,
     private localStorageService: LocalStorageService,
     private loginFormBuilderService: LoginFormBuilderService,
-    private userDataService: UserDataService,
+    private router: Router,
   ) { }
 
   public submit(form: FormGroup): void {
     const formValue: LoginData = form.value;
     const isValid = form.valid;
 
+    this.responseErrorSubject.next(null);
+
     if (isValid) {
-      this.authRestService.login(formValue).subscribe((res) => {
-        this.localStorageService.setData('token', res.token);
-        this.userDataService.loadCurrent();
+      this.authRestService.login(formValue).subscribe({
+        next: (res) => {
+          this.localStorageService.setData('token', res.token);
+          this.router.navigate(['home']);
+        },
+        error: () => {
+          this.responseErrorSubject.next('Invalid username or password');
+        }
       });
     }
   }

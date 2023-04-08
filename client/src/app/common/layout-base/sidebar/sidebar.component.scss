@@ -1,0 +1,42 @@
+.container {
+  margin-right: 20px;
+}
+
+.content {
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+.inner {
+  border: #3366ff 1px solid;
+  height: 100%;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.chats-container {
+  overflow-y: scroll;
+  max-height: 80vh;
+  padding: 0.8rem;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

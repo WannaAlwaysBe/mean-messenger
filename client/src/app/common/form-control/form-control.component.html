@@ -1,0 +1,19 @@
+<div class="input-group">
+  <label *ngIf="label" class="input-label">
+    {{label}}
+    <input
+      class="input-control"
+      [type]="type"
+      nbInput
+      fullWidth
+      [ngModel]="state"
+      (ngModelChange)="onInput($event)"
+      [status]="!submitted || (formControl.valid && statusExtraCondition) ? 'basic' : 'danger'"
+      [attr.placeholder]="placeholder"
+    >
+  </label>
+  <app-control-errors
+    [submitted]="submitted"
+    [errorConfig]="errorConfig"
+  ></app-control-errors>
+</div>

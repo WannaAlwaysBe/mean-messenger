@@ -1,0 +1,5 @@
+<div *ngIf="submitted">
+  <ng-container *ngFor="let error of errorConfig">
+    <div class="input-error" *ngIf="error.condition">{{error.text}}</div>
+  </ng-container>
+</div>

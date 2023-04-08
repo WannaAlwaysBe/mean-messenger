@@ -1,0 +1,21 @@
+:host {
+  height: 100%;
+  display: block;
+}
+
+.container {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+.inner {
+  border: #3366ff 1px solid;
+  height: 100%;
+  border-radius: 5px;
+  padding: 10px;
+}

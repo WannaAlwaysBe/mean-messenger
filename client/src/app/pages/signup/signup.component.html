@@ -1,0 +1,51 @@
+<form class="form" [formGroup]="form" #ngForm="ngForm" (submit)="submit(form)">
+  <app-centered-form formTitle="Register">
+    <div class="input-wrapper">
+      <app-form-control
+        formControlName="phone"
+        label="Phone number"
+        placeholder="e.g. +380954434223"
+        [submitted]="ngForm.submitted"
+        [errorConfig]="[
+          {condition: phoneControl.errors?.['required'], text: 'Required'},
+          {condition: phoneControl.errors?.['pattern'], text: 'Should be a phone number'},
+        ]"
+      ></app-form-control>
+
+      <app-form-control
+        formControlName="username"
+        label="Username"
+        placeholder="e.g. User2134"
+        [submitted]="ngForm.submitted"
+        [errorConfig]="[
+          {condition: usernameControl.errors?.['required'], text: 'Required'},
+          {condition: usernameControl.errors?.['username'], text: 'Invalid username'},
+        ]"
+      ></app-form-control>
+
+      <app-form-control
+        formControlName="password"
+        type="password"
+        label="Password"
+        [submitted]="ngForm.submitted"
+        [errorConfig]="[
+          {condition: passwordControl.errors?.['required'], text: 'Required'},
+          {condition: passwordControl.errors?.['passwordStrength'], text: 'Password is weak'},
+        ]"
+      ></app-form-control>
+
+      <app-form-control
+        formControlName="confirmPassword"
+        type="password"
+        label="Confirm password"
+        [statusExtraCondition]="!form.errors?.['equality']"
+        [submitted]="ngForm.submitted"
+        [errorConfig]="[
+          {condition: confirmPasswordControl.errors?.['required'], text: 'Required'},
+          {condition: form.errors?.['equality'], text: 'Passwords don\'t match'},
+        ]"
+      ></app-form-control>
+    </div>
+    <button nbButton fullWidth status="primary" type="submit">Register</button>
+  </app-centered-form>
+</form>

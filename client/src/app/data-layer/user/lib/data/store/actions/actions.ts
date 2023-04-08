@@ -15,15 +15,14 @@ export const loadAllFailure = createAction(
   props<{httpErrorResponse: HttpErrorResponse}>(),
 );
 
-export const loadOne = createAction(
-  '[User] Load One',
-  props<{userId: string}>(),
+export const loadCurrent = createAction(
+  '[User] Load Current',
 );
-export const loadOneSuccess = createAction(
-  '[User] Load One Success',
+export const loadCurrentSuccess = createAction(
+  '[User] Load Current Success',
   props<{user: User}>(),
 );
-export const loadOneFailure = createAction(
-  '[User] Load One Failure',
+export const loadCurrentFailure = createAction(
+  '[User] Load Current Failure',
   props<{httpErrorResponse: HttpErrorResponse}>(),
 );

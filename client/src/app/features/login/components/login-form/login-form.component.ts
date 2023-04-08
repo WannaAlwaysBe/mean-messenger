@@ -1,9 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 
-import {AuthRestService, AuthData} from '@data-layer/auth';
+import {AuthRestService, LoginData} from '@data-layer/auth';
 
 import {LoginFormBuilderService} from '../../services/login.form-builder.service';
+import {LocalStorageService} from "@common";
 
 @Component({
   selector: 'app-login-form',
@@ -25,17 +26,18 @@ export class LoginFormComponent {
 
   constructor(
     private authRestService: AuthRestService,
+    private localStorageService: LocalStorageService,
     private loginFormBuilderService: LoginFormBuilderService,
   ) {
   }
 
   public submit(form: FormGroup): void {
-    const formValue: AuthData = form.value;
+    const formValue: LoginData = form.value;
     const isValid = form.valid;
 
     if (isValid) {
       this.authRestService.login(formValue).subscribe((res) => {
-        console.log(res);
+        this.localStorageService.setData('auth', res.token);
       });
     }
   }

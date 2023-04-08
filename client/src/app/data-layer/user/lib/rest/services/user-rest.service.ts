@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
-import { User } from '../../models';
+import { User } from '@data-layer/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRestService {
-  public userUrl = '';
-  public userIdUrl = (id: string): string => `${this.userUrl}/${id}`;
+  private usersUrl = '/api/users';
+  private currentUserUrl = '/api/user';
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {}
 
-  public getAll(users: User[]): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl);
+  public getAll(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl);
   }
 
-  public getOne(userId: string): Observable<User> {
-    return this.http.get<User>(this.userIdUrl(userId));
+  public getCurrent(): Observable<User> {
+    return this.http.get<User>(this.currentUserUrl);
   }
 }

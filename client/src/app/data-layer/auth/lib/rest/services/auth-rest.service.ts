@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { AuthData, NewUserData } from '../../models';
-import { User } from '../../../../user/lib/models';
+import { AuthData, LoginData, RegisterData } from '../../models';
 
 @Injectable()
 export class AuthRestService {
@@ -15,11 +14,11 @@ export class AuthRestService {
     private http: HttpClient,
   ) { }
 
-  public register(newUserData: NewUserData): Observable<User> {
-    return this.http.post<User>(this.registerUrl, newUserData);
+  public register(registerData: RegisterData): Observable<AuthData> {
+    return this.http.post<AuthData>(this.registerUrl, registerData);
   }
 
-  public login(authData: AuthData): Observable<User> {
-    return this.http.post<User>(this.loginUrl, authData);
+  public login(loginData: LoginData): Observable<AuthData> {
+    return this.http.post<AuthData>(this.loginUrl, loginData);
   }
 }

@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { UserRestModule } from '../rest/user-rest.module';
+import { featureKey, featureReducer } from './store/store';
+import { UserEffects } from './store/effects/user.effects';
+import { UserDataService } from './services/user-data.service';
 
 @NgModule({
-  declarations: [],
+  providers: [UserDataService],
   imports: [
-    CommonModule,
     UserRestModule,
+    StoreModule.forFeature(featureKey, [featureReducer]),
+    EffectsModule.forFeature(UserEffects)
   ]
 })
 export class UserDataModule { }

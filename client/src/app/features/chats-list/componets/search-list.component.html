@@ -4,7 +4,10 @@
 
 <div class="chats-container">
   <ng-container *ngIf="searchText">
-    <p *ngIf="userList.length" class="list-title">Users</p>
+    <div class="list-title">
+      <span>Users</span>
+      <span>{{(userList | filter : {by: 'username', filterTerm: searchText}).length}}</span>
+    </div>
     <app-search-list-user
       *ngFor="let user of userList | filter : {by: 'username', filterTerm: searchText}"
       [name]="user.username"
@@ -15,7 +18,10 @@
   </ng-container>
 
   <ng-container *ngIf="!searchText">
-    <p *ngIf="chatList.length" class="list-title">Chats</p>
+    <div *ngIf="chatList.length" class="list-title">
+      <span>Chats</span>
+      <span>{{chatList.length}}</span>
+    </div>
     <app-search-list-chat
       *ngFor="let chat of chatList"
       [id]="chat.id"

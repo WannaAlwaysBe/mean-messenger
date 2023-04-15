@@ -20,6 +20,10 @@ export class PreloadResolver implements Resolve<boolean> {
     this.userDataService.loadCurrent();
     this.chatDataService.loadAll();
 
+    if (state.url.split('/')[2] === 'newChat') {
+      this.userDataService.loadOne(state.url.split('/')[3]);
+    }
+
     return combineLatest([
       this.userDataService.loading$.pipe(map(loadingState => loadingState.loadInProgress)),
       this.userDataService.currentLoading$.pipe(map(loadingState => loadingState.loadInProgress)),

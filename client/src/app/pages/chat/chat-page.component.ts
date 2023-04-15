@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {map, withLatestFrom, combineLatest} from 'rxjs';
@@ -11,7 +11,7 @@ import {UserDataService} from '@data-layer/user';
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.scss']
 })
-export class ChatPageComponent implements OnInit {
+export class ChatPageComponent {
   public receiver = combineLatest([
     this.route.url,
     this.chatDataService.entities$,
@@ -38,13 +38,5 @@ export class ChatPageComponent implements OnInit {
     private chatDataService: ChatDataService,
     private userDataService: UserDataService,
   ) {
-  }
-
-  public ngOnInit(): void {
-    this.route.url.subscribe(urlArray => {
-      if (urlArray[0].path === 'newChat') {
-        this.userDataService.loadOne(urlArray[1].path);
-      }
-    });
   }
 }

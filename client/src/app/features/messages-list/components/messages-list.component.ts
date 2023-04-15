@@ -21,6 +21,8 @@ export class MessagesListComponent {
   public sendMessage(event: any, receiver: User, currentChat: Chat | string) {
     if (currentChat === 'newChat') {
       this.chatDataService.create({receiver: receiver.id});
+    } else {
+      console.log(currentChat);
     }
 
     // this.messages.push({

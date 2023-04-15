@@ -1,4 +1,4 @@
-<a [routerLink]="getChatLink(chatList, id)" class="card">
+<a routerLinkActive="active" [routerLink]="getChatLink(chatList, id)" class="card">
   <div class="icon" [ngStyle]="{'border-color': hex}">{{name | nameIcon}}</div>
   <div class="name">{{name}}</div>
 </a>

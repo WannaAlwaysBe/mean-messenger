@@ -13,8 +13,7 @@ class ChatDto {
 		this.users = model.users.map((user) => {return new UserDto(user)});
 		this.lastMessage= message ? new MessageDto(message) : {};
 
-		const receiver = this.users.find(user => user.id != uid) ?? this.users[0];
-		this.receiver = new UserDto(receiver);
+		this.receiver = this.users.find(user => user.id != uid) ?? this.users[0];;
 	}
 }
 

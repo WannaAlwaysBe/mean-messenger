@@ -14,10 +14,7 @@ class ChatDto {
 		this.lastMessage= message ? new MessageDto(message) : {};
 
 		const receiver = this.users.find(user => user.id != uid) ?? this.users[0];
-		this.receiver = {
-			username: receiver.username,
-			hex: receiver.hex
-		}
+		this.receiver = new UserDto(receiver);
 	}
 }
 

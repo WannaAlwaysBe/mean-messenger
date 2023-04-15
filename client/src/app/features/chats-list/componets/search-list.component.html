@@ -4,6 +4,7 @@
 
 <div class="chats-container">
   <ng-container *ngIf="searchText">
+    <p class="list-title">Users</p>
     <app-search-list-user
       *ngFor="let user of userList | filter : {by: 'username', filterTerm: searchText}"
       [name]="user.username"
@@ -14,6 +15,7 @@
   </ng-container>
 
   <ng-container *ngIf="!searchText">
+    <p class="list-title">Chats</p>
     <app-search-list-chat
       *ngFor="let chat of chatList"
       [id]="chat.id"

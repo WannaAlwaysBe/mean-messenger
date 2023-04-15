@@ -15,7 +15,7 @@ export class SearchListUserComponent {
   @Input() public chatList: Chat[] = [];
 
   public getChatLink(chatList: Chat[], id: string): string {
-    const existingChatWithUser = chatList.find(chat => chat.users.some(user => user.id === id));
+    const existingChatWithUser = chatList.find(chat => chat.receiver.id === id);
 
     return existingChatWithUser ? existingChatWithUser.id : `newChat/${id}`;
   }

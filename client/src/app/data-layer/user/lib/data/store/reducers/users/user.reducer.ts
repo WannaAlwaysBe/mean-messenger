@@ -14,6 +14,8 @@ export const initialState: State = adapter.getInitialState();
 
 export const reducer = createReducer(
   initialState,
-  on(fromActions.loadAllSuccess, (state, res) => adapter.setAll(res.users, state)),
+  on(fromActions.loadAllSuccess, (state, res) => adapter.setMany(res.users, state)),
+  on(fromActions.loadOneSuccess, (state, res) => adapter.setOne(res.user, state)),
+  on(fromActions.clear, (state) => adapter.removeAll(state)),
 );
 

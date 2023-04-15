@@ -1,0 +1,26 @@
+.search-container {
+  margin-bottom: 20px;
+}
+
+.chats-container {
+  overflow-y: auto;
+  height: 80vh;
+  padding: 0.8rem;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}

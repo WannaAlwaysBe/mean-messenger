@@ -13,6 +13,7 @@ export * from './centered-form/centered-form.component';
 export * from './layout-base/body/body.component';
 export * from './layout-base/sidebar/sidebar.component';
 export * from './control-errors/control-errors.component';
+export * from './page-loader/page-loader.component';
 
 // Pipes
 export * from './pipes/name-icon.pipe';
@@ -20,3 +21,9 @@ export * from './pipes/name-icon.pipe';
 // Interceptors
 export * from './interceptors/base-url.interceptor';
 export * from './interceptors/auth.interceptor';
+
+// Resolvers
+export * from './resolvers/preload.resolver';
+
+// Guards
+export * from './guards/auth.guard';

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatsListComponent } from './chats-list.component';
+import { SearchListUserComponent } from './search-list-user.component';
 
-describe('ChatsListComponent', () => {
-  let component: ChatsListComponent;
-  let fixture: ComponentFixture<ChatsListComponent>;
+describe('SearchListUserComponent', () => {
+  let component: SearchListUserComponent;
+  let fixture: ComponentFixture<SearchListUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChatsListComponent ]
+      declarations: [ SearchListUserComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChatsListComponent);
+    fixture = TestBed.createComponent(SearchListUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

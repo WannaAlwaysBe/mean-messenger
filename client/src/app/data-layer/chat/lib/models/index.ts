@@ -1,10 +1,19 @@
+import { User } from '@data-layer/user';
+
 export interface Chat {
-  interlocutorName: string;
-  messages: Message[];
+  id: string;
+  users: User[];
+  receiver: User;
+  lastMessage: LastMessage;
 }
 
-export interface Message {
-  timestamp: string;
+export interface LastMessage {
+  id: string;
+  sender: User;
   text: string;
-  author: string;
+  timestamp: string;
+}
+
+export interface ChatInitialData {
+  receiver: string;
 }

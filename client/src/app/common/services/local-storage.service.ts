@@ -8,6 +8,10 @@ export class LocalStorageService {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
+  public removeData(key: string): void {
+    localStorage.removeItem(key);
+  }
+
   public getData<T>(key: string): T | null {
     const data = localStorage.getItem(key);
 

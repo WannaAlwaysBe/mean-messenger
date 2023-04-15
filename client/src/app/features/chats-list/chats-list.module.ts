@@ -5,13 +5,15 @@ import { NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule } from '@n
 
 import { AppCommonModule } from '@common';
 
-import { ChatsSearchComponent } from './componets/search/chats-search.component';
-import { ChatsListComponent } from './componets/chats-list.component';
-import { ItemComponent } from './componets/item/item.component';
+import { SearchListInputComponent } from './componets/search/search-list-input.component';
+import { SearchListComponent } from './componets/search-list.component';
+import { SearchListChatComponent } from './componets/chat/search-list-chat.component';
+import { SearchListUserComponent } from './componets/user/search-list-user.component';
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @NgModule({
-  declarations: [ChatsSearchComponent, ChatsListComponent, ItemComponent],
-  exports: [ChatsListComponent, ChatsSearchComponent],
+  declarations: [SearchListInputComponent, SearchListComponent, SearchListChatComponent, SearchListUserComponent],
+  exports: [SearchListComponent, SearchListInputComponent],
   imports: [
     CommonModule,
     NbCardModule,
@@ -19,6 +21,8 @@ import { ItemComponent } from './componets/item/item.component';
     NbIconModule,
     NbInputModule,
     AppCommonModule,
+    RouterLink,
+    RouterLinkActive,
   ]
 })
 export class ChatsListModule { }

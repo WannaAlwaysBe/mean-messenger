@@ -20,11 +20,19 @@ export class UserDataService {
     private store$: Store<fromStore.FeatureState>
   ) { }
 
-  loadAll(): void {
-    this.store$.dispatch(fromActions.loadAll());
+  public loadAll(searchText: string): void {
+    this.store$.dispatch(fromActions.loadAll({searchText}));
   }
 
-  loadCurrent(): void {
+  public clear(): void {
+    this.store$.dispatch(fromActions.clear());
+  }
+
+  public loadCurrent(): void {
     this.store$.dispatch(fromActions.loadCurrent());
+  }
+
+  public loadOne(userId: string): void {
+    this.store$.dispatch(fromActions.loadOne({userId}));
   }
 }

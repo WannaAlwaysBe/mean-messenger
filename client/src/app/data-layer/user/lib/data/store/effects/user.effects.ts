@@ -14,19 +14,27 @@ export class UserEffects {
     private http: UserRestService,
   ) {}
 
-  load = createEffect(() => this.actions$.pipe(
+  load$ = createEffect(() => this.actions$.pipe(
     ofType(fromActions.loadAll),
-    switchMap(() => this.http.getAll().pipe(
+    switchMap(({searchText}) => this.http.getAll(searchText).pipe(
       map(users => fromActions.loadAllSuccess({users})),
       catchError(httpErrorResponse => of(fromActions.loadAllFailure({httpErrorResponse}))),
     )),
   ));
 
-  loadCurrent = createEffect(() => this.actions$.pipe(
+  loadCurrent$ = createEffect(() => this.actions$.pipe(
     ofType(fromActions.loadCurrent),
     switchMap(() => this.http.getCurrent().pipe(
       map(user => fromActions.loadCurrentSuccess({user})),
       catchError(httpErrorResponse => of(fromActions.loadCurrentFailure({httpErrorResponse}))),
+    )),
+  ));
+
+  loadOne$ = createEffect(() => this.actions$.pipe(
+    ofType(fromActions.loadOne),
+    switchMap(({userId}) => this.http.getOne(userId).pipe(
+      map(user => fromActions.loadOneSuccess({user})),
+      catchError(httpErrorResponse => of(fromActions.loadOneFailure({httpErrorResponse}))),
     )),
   ));
 }

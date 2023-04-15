@@ -48,12 +48,14 @@ export class SignupFormComponent {
   }
 
   public submit(form: FormGroup): void {
-    const formValue: RegisterData = form.value;
+    const formValue: RegisterData = {...form.value};
     const isValid = form.valid;
 
     this.responseErrorSubject.next(null);
 
     if (isValid) {
+      delete formValue['confirmPassword'];
+
       this.authRestService.register(formValue).subscribe({
         next: (res) => {
           this.localStorageService.setData('token', res.token);

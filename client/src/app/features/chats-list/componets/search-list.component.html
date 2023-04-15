@@ -1,0 +1,25 @@
+<div class="search-container">
+  <app-search-list-input (onSearch)="onSearch($event)"></app-search-list-input>
+</div>
+
+<div class="chats-container">
+  <ng-container *ngIf="searchText">
+    <app-search-list-user
+      *ngFor="let user of userList | filter : {by: 'username', filterTerm: searchText}"
+      [name]="user.username"
+      [hex]="user.hex"
+      [id]="user.id"
+      [chatList]="chatList"
+    ></app-search-list-user>
+  </ng-container>
+
+  <ng-container *ngIf="!searchText">
+    <app-search-list-chat
+      *ngFor="let chat of chatList"
+      [id]="chat.id"
+      [name]="chat.receiver.username"
+      [hex]="chat.receiver.hex"
+      [lastMessage]="chat.lastMessage.text"
+    ></app-search-list-chat>
+  </ng-container>
+</div>

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PreloadResolver } from '@common';
+import { AuthGuard } from '@common';
+
 import { MainPageComponent } from './pages/main/main-page.component';
 import { ChatPageComponent } from './pages/chat/chat-page.component';
 import { LoginPageComponent } from './pages/login/login-page.component';
@@ -13,7 +16,10 @@ const routes: Routes = [
     component: MainPageComponent,
     children: [
       { path: ':chatId', component: ChatPageComponent },
+      { path: 'newChat/:userId', component: ChatPageComponent },
     ],
+    resolve: [PreloadResolver],
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',

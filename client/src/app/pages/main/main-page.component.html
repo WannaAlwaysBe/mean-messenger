@@ -1,13 +1,12 @@
+<app-page-loader [processInProgress]="loadInProgress"></app-page-loader>
+
 <nb-layout-header>
   <div class="header">
     <span class="logo">My App</span>
     <span class="spacer"></span>
     <ul class="nav-list">
       <li class="nav-item">
-        <a href="#" class="nav-link">Settings</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Logout</a>
+        <a routerLink="//login" class="nav-link">Logout</a>
       </li>
     </ul>
   </div>
@@ -18,7 +17,10 @@
     <div class="main-content">
       <div class="sidebar-container">
         <app-sidebar>
-          <app-chats-list></app-chats-list>
+          <app-search-list
+            [userList]="userDataService.list$ | async"
+            [chatList]="chatDataService.list$ | async"
+          ></app-search-list>
         </app-sidebar>
       </div>
       <div class="body-container">

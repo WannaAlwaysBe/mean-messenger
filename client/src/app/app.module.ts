@@ -6,13 +6,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { NbLayoutModule, NbThemeModule } from '@nebular/theme';
+import {NbLayoutModule, NbSpinnerModule, NbThemeModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AppCommonModule, AuthInterceptor } from '@common';
 import { BaseUrlInterceptor } from '@common';
 
 import { UserDataModule } from '@data-layer/user';
+import { ChatDataModule } from '@data-layer/chat';
 
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
@@ -34,6 +35,8 @@ import { AppRoutingModule } from './app-routing.module';
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     UserDataModule,
+    ChatDataModule,
+    NbSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },

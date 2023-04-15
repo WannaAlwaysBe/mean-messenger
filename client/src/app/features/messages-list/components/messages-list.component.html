@@ -1,16 +1,21 @@
-<nb-chat title="Chat with Joka">
-  <nb-chat-message *ngFor="let msg of messages"
-                   [type]="msg.type"
-                   [message]="msg.text"
-                   [reply]="msg.reply"
-                   [sender]="msg.user.name"
-                   [date]="msg.date"
-                   [quote]="msg.quote"
-                   [latitude]="msg.latitude"
-                   [longitude]="msg.longitude"
-                   [avatar]="msg.user.avatar">
-  </nb-chat-message>
+<ng-container *ngIf="currentChat">
+  <nb-chat [title]="getChatTitle(receiver, currentChat)">
+    <ng-container>
+      <nb-chat-message *ngFor="let msg of []"
+                       [type]="msg.type"
+                       [message]="msg.text"
+                       [reply]="msg.reply"
+                       [sender]="msg.user.name"
+                       [date]="msg.date"
+                       [quote]="msg.quote"
+                       [latitude]="msg.latitude"
+                       [longitude]="msg.longitude"
+                       [avatar]="msg.user.avatar">
+      </nb-chat-message>
+    </ng-container>
 
-  <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
-  </nb-chat-form>
-</nb-chat>
+    <nb-chat-form (send)="sendMessage($event, receiver, currentChat)" [dropFiles]="false">
+    </nb-chat-form>
+  </nb-chat>
+
+</ng-container>

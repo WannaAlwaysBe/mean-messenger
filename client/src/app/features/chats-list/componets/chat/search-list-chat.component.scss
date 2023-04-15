@@ -1,0 +1,41 @@
+.card {
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px 0 #dcdcdc;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+
+  &.active {
+    background-color: #f3f4ff;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+
+  border-radius: 50%;
+  background-color: #d1ddff;
+  border: 2px solid #3366ff;
+}
+
+.last-message {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

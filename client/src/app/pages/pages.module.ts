@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -20,17 +20,18 @@ import { SignupPageComponent } from './signup/signup-page.component';
 @NgModule({
   declarations: [MainPageComponent, ChatPageComponent, LoginPageComponent, SignupPageComponent],
   exports: [MainPageComponent],
-  imports: [
-    CommonModule,
-    AppCommonModule,
-    NbCardModule,
-    RouterOutlet,
-    MessagesListModule,
-    ReactiveFormsModule,
-    NbLayoutModule,
-    LoginModule,
-    SignupModule,
-    ChatsListModule,
-  ]
+	imports: [
+		CommonModule,
+		AppCommonModule,
+		NbCardModule,
+		RouterOutlet,
+		MessagesListModule,
+		ReactiveFormsModule,
+		NbLayoutModule,
+		LoginModule,
+		SignupModule,
+		ChatsListModule,
+		RouterLink,
+	]
 })
 export class PagesModule { }

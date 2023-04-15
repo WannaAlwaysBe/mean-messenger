@@ -1,1 +1,4 @@
-<app-messages-list></app-messages-list>
+<app-messages-list
+  [receiver]="receiver | async"
+  [currentChat]="currentChat$ | async"
+></app-messages-list>

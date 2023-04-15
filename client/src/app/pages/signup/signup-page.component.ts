@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+
+import {LocalStorageService} from '@common';
 
 @Component({
   selector: 'app-signup-page',
@@ -6,6 +8,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./signup-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignupPageComponent {
-
+export class SignupPageComponent implements OnInit {
+  constructor(
+    private localStorageService: LocalStorageService,
+  ) { }
+  public ngOnInit(): void {
+    this.localStorageService.removeData('token');
+  }
 }

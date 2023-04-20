@@ -4,7 +4,10 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
-const errorMiddleware = require('./app/middlewares/error.middleware')
+const errorMiddleware = require('./app/middlewares/error.middleware');
+const socketAuthMiddleware = require('./app/middlewares/socket-auth.middleware');
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
 const authRouter = require('./app/routers/auth.router');
 const userRouter = require('./app/routers/user.router');
@@ -22,12 +25,38 @@ app.use('/api', userRouter, chatRouter);
 
 app.use(errorMiddleware);
 
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+	cors: {
+		origin: "http://localhost:3000",
+		credentials: "true",
+	},
+});
+
+io.use(socketAuthMiddleware);
+
+global.onlineUsers = new Map();
+io.on('connection', (socket) => {
+	onlineUsers.set(socket.user.id, socket.id);
+	socket.to(socket.id).emit('id', socket.id);
+
+	socket.on('message', (data) => {
+		console.log(data);
+
+		socket.to(onlineUsers.get(data.receiver)).emit('message', data);
+	});
+
+	socket.on('disconnect', () => {
+		onlineUsers.delete(socket.user.id);
+	});
+});
+
 (async () => {
 	try {
 		mongoose.set('strictQuery', true);
 		await mongoose.connect(process.env.DB_URL);
 
-		app.listen(PORT, () => {
+		httpServer.listen(PORT, () => {
 			console.log(`[server] Server started on PORT ${PORT}`);
 		});
 	} catch (e) {
@@ -35,4 +64,4 @@ app.use(errorMiddleware);
 	}
 })();
 
-module.exports = app;
+module.exports = httpServer;

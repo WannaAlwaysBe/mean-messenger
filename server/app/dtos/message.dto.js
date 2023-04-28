@@ -1,5 +1,3 @@
-const UserDto = require('./user.dto');
-
 class MessageDto {
 
 	id;
@@ -9,9 +7,9 @@ class MessageDto {
 
 	constructor(model) {
 		this.id = model._id;
-		this.sender = new UserDto(model.sender);
+		this.sender = model.sender;
 		this.text = model.text;
-		this.timestamp = model.timestamp;
+		this.timestamp = model.createdAt;
 	}
 }
 

@@ -12,6 +12,7 @@ const { Server } = require("socket.io");
 const authRouter = require('./app/routers/auth.router');
 const userRouter = require('./app/routers/user.router');
 const chatRouter = require('./app/routers/chat.router');
+const messageService = require('./app/services/message.service');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -38,12 +39,15 @@ io.use(socketAuthMiddleware);
 global.onlineUsers = new Map();
 io.on('connection', (socket) => {
 	onlineUsers.set(socket.user.id, socket.id);
-	socket.to(socket.id).emit('id', socket.id);
 
-	socket.on('message', (data) => {
-		console.log(data);
+	socket.on('all_messages', async (data) => {
+		const messages = await messageService.getMessages();
+		socket.to(socket.id).emit('message', JSON.stringify(messages));
+	});
 
-		socket.to(onlineUsers.get(data.receiver)).emit('message', data);
+	socket.on('message', async (data) => {
+		const message = await messageService.createMessage(data);
+		socket.to(onlineUsers.get(data.receiver)).emit('message', JSON.stringify(message));
 	});
 
 	socket.on('disconnect', () => {

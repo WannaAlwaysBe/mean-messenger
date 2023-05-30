@@ -4,23 +4,11 @@
                      type="text"
                      [message]="msg.text"
                      [reply]="msg.sender === currentUser.id"
-                     [sender]="currentUser.username"
+                     [sender]="msg.sender === currentUser.id ? currentUser.username : receiver.username"
                      [date]="msg.timestamp"
                      [avatar]="'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png'">
     </nb-chat-message>
     <nb-chat-form (send)="sendMessage($event, currentUser, receiver, currentChat)" [dropFiles]="false">
     </nb-chat-form>
   </nb-chat>
-
 </ng-container>
-
-
-<!--[type]="msg.type"
-[message]="msg.text"
-[reply]="msg.reply"
-[sender]="msg.user.name"
-[date]="msg.date"
-[quote]="msg.quote"
-[latitude]="msg.latitude"
-[longitude]="msg.longitude"
-[avatar]="msg.user.avatar">-->

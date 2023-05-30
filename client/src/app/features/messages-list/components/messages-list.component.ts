@@ -44,6 +44,7 @@ export class MessagesListComponent {
           sender: sender.id,
           chat: chat.id,
           text: event.message,
+          receiver: receiver.id,
         });
       });
       });
@@ -52,19 +53,9 @@ export class MessagesListComponent {
         sender: sender.id,
         chat: (currentChat as Chat).id,
         text: event.message,
+        receiver: receiver.id,
       });
     }
-
-    // this.messages.push({
-    //   text: event.message,
-    //   date: new Date(),
-    //   reply: true,
-    //   type: 'text',
-    //   user: {
-    //     name: 'Jonh Doe',
-    //     avatar: 'https://i.gifer.com/no.gif',
-    //   },
-    // });
   }
 
   public getChatTitle(receiver: User, currentChat: 'newChat' | Chat): string {

@@ -27,6 +27,7 @@
       </div>
     </div>
     <p class="response-error">{{responseError$ | async}}</p>
-    <button nbButton fullWidth status="primary" type="submit">Login</button>
+    <button class="submit-btn" nbButton fullWidth status="primary" type="submit">Login</button>
+    <p class="bottom-links-container">Don't have an account? <a class="form-bottom-link" [routerLink]="['/register']">Register</a></p>
   </app-centered-form>
 </form>

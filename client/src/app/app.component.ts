@@ -10,7 +10,9 @@ import {NavigationError, NavigationStart, Router, RouterEvent} from '@angular/ro
 export class AppComponent {
   public loading = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+  ) {
     this.router.events.subscribe((event: RouterEvent) => {
       switch (true) {
         case event instanceof NavigationStart: {

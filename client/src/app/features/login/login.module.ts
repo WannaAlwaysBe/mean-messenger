@@ -10,6 +10,7 @@ import { AuthRestModule } from '@data-layer/auth';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { UserDataService } from '@data-layer/user';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { UserDataService } from '@data-layer/user';
   exports: [
     LoginFormComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    AppCommonModule,
-    NbButtonModule,
-    AuthRestModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AppCommonModule,
+        NbButtonModule,
+        AuthRestModule,
+        RouterLink,
+    ],
   providers: [
     UserDataService,
   ]

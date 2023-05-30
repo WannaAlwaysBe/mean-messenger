@@ -3,12 +3,14 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 
 import { Observable } from 'rxjs';
 
+import { environment } from '../../../environment';
+
 @Injectable()
 export class BaseUrlInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const apiReq = request.clone({ url: `${'http://localhost:8080/api'}${request.url}` });
+    const apiReq = request.clone({ url: `${environment.SERVER_URL}/api${request.url}` });
 
     return next.handle(apiReq);
   }

@@ -1,0 +1,22 @@
+{
+  "name": "mean-messenger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd server && npm run dev\" \"cd client && npm run ng serve\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WannaAlwaysBe/mean-messenger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WannaAlwaysBe/mean-messenger/issues"
+  },
+  "homepage": "https://github.com/WannaAlwaysBe/mean-messenger#readme",
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}

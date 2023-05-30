@@ -1,0 +1,61 @@
+<form class="form" [formGroup]="form" #ngForm="ngForm" (submit)="submit(form)">
+  <app-centered-form formTitle="Register">
+    <div class="input-wrapper">
+      <div class="input-group">
+        <app-form-control
+          formControlName="phone"
+          label="Phone number"
+          placeholder="e.g. +380954434223"
+          [submitted]="ngForm.submitted"
+          [errorConfig]="[
+          {condition: phoneControl.errors?.['required'], text: 'Required'},
+          {condition: phoneControl.errors?.['pattern'], text: 'Should be a phone number'},
+        ]"
+        ></app-form-control>
+      </div>
+
+      <div class="input-group">
+        <app-form-control
+          formControlName="username"
+          label="Username"
+          placeholder="e.g. User2134"
+          [submitted]="ngForm.submitted"
+          [errorConfig]="[
+          {condition: usernameControl.errors?.['required'], text: 'Required'},
+          {condition: usernameControl.errors?.['username'], text: 'Invalid username'},
+        ]"
+        ></app-form-control>
+      </div>
+
+      <div class="input-group">
+        <app-form-control
+          formControlName="password"
+          type="password"
+          label="Password"
+          [submitted]="ngForm.submitted"
+          [errorConfig]="[
+          {condition: passwordControl.errors?.['required'], text: 'Required'},
+          {condition: passwordControl.errors?.['passwordStrength'], text: 'Password is weak'},
+        ]"
+        ></app-form-control>
+      </div>
+
+      <div class="input-group">
+        <app-form-control
+          formControlName="confirmPassword"
+          type="password"
+          label="Confirm password"
+          [statusExtraCondition]="!form.errors?.['equality']"
+          [submitted]="ngForm.submitted"
+          [errorConfig]="[
+          {condition: confirmPasswordControl.errors?.['required'], text: 'Required'},
+          {condition: form.errors?.['equality'], text: 'Passwords don\'t match'},
+        ]"
+        ></app-form-control>
+      </div>
+    </div>
+    <p class="response-error">{{responseError$ | async}}</p>
+    <button class="submit-btn" nbButton fullWidth status="primary" type="submit">Register</button>
+    <p class="bottom-links-container">Have an account? <a class="form-bottom-link" [routerLink]="['/login']">Login</a></p>
+  </app-centered-form>
+</form>

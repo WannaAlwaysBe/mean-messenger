@@ -1,4 +1,5 @@
 <app-messages-list
-  [receiver]="receiver | async"
+  [receiver]="receiver$ | async"
   [currentChat]="currentChat$ | async"
+  [currentUser]="currentUser$ | async"
 ></app-messages-list>

@@ -13,6 +13,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { NameIconPipe } from './pipes/name-icon.pipe';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { WebsocketService } from "./services/websocket/websocket.service";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,6 @@ import { FilterPipe } from './pipes/filter.pipe';
     FormsModule,
     NbSpinnerModule,
   ],
-  providers: [LocalStorageService],
+  providers: [LocalStorageService, WebsocketService],
 })
 export class AppCommonModule { }

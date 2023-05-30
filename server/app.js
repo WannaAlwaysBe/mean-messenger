@@ -29,7 +29,7 @@ app.use(errorMiddleware);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
 	cors: {
-		origin: "http://localhost:3000",
+		origin: ["http://localhost:3000", "http://localhost:4200"],
 		credentials: "true",
 	},
 });
@@ -41,13 +41,16 @@ io.on('connection', (socket) => {
 	onlineUsers.set(socket.user.id, socket.id);
 
 	socket.on('all_messages', async (data) => {
-		const messages = await messageService.getMessages();
-		socket.to(socket.id).emit('message', JSON.stringify(messages));
+		const messages = await messageService.getMessages(data);
+		io.to(socket.id).emit('message', JSON.stringify(messages));
 	});
 
 	socket.on('message', async (data) => {
-		const message = await messageService.createMessage(data);
-		socket.to(onlineUsers.get(data.receiver)).emit('message', JSON.stringify(message));
+		const parsedData = JSON.parse(data);
+
+		const message = await messageService.createMessage(parsedData);
+		io.to(socket.id).emit('message', JSON.stringify(message));
+		io.to(onlineUsers.get(parsedData.receiver)).emit('message', JSON.stringify(message));
 	});
 
 	socket.on('disconnect', () => {

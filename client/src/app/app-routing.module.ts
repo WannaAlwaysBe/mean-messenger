@@ -4,16 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { PreloadResolver } from '@common';
 import { AuthGuard } from '@common';
 
-import { MainPageComponent } from './pages/main/main-page.component';
+import { HomePageComponent } from './pages/home/home-page.component';
 import { ChatPageComponent } from './pages/chat/chat-page.component';
 import { LoginPageComponent } from './pages/login/login-page.component';
-import { SignupPageComponent } from './pages/signup/signup-page.component';
+import { RegisterPageComponent } from './pages/register/register-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
-    component: MainPageComponent,
+    component: HomePageComponent,
     children: [
       { path: ':chatId', component: ChatPageComponent },
       { path: 'newChat/:userId', component: ChatPageComponent },
@@ -26,8 +26,8 @@ const routes: Routes = [
     component: LoginPageComponent,
   },
   {
-    path: 'sign-up',
-    component: SignupPageComponent,
+    path: 'register',
+    component: RegisterPageComponent,
   }
 ];
 

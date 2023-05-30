@@ -6,20 +6,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NbCardModule, NbLayoutModule } from '@nebular/theme';
 
 import { LoginModule } from '@features/login';
-import { SignupModule } from '@features/signup';
+import { SignupModule } from '@features/register';
 import { MessagesListModule } from '@features/messages-list';
-import { ChatsListModule } from '@features/cats-list';
+import { SearchListModule } from '@features/search-list';
 
 import { AppCommonModule } from '@common';
 
-import { MainPageComponent } from './main/main-page.component';
+import { HomePageComponent } from './home/home-page.component';
 import { ChatPageComponent } from './chat/chat-page.component';
 import { LoginPageComponent } from './login/login-page.component';
-import { SignupPageComponent } from './signup/signup-page.component';
+import { RegisterPageComponent } from './register/register-page.component';
 
 @NgModule({
-  declarations: [MainPageComponent, ChatPageComponent, LoginPageComponent, SignupPageComponent],
-  exports: [MainPageComponent],
+  declarations: [HomePageComponent, ChatPageComponent, LoginPageComponent, RegisterPageComponent],
+  exports: [HomePageComponent],
 	imports: [
 		CommonModule,
 		AppCommonModule,
@@ -30,7 +30,7 @@ import { SignupPageComponent } from './signup/signup-page.component';
 		NbLayoutModule,
 		LoginModule,
 		SignupModule,
-		ChatsListModule,
+		SearchListModule,
 		RouterLink,
 	]
 })

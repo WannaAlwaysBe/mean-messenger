@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,10 +14,12 @@ import { BaseUrlInterceptor } from '@common';
 
 import { UserDataModule } from '@data-layer/user';
 import { ChatDataModule } from '@data-layer/chat';
+import { MessageDataModule } from '@data-layer/message';
 
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
     UserDataModule,
     ChatDataModule,
     NbSpinnerModule,
+    MessageDataModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },

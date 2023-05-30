@@ -12,7 +12,7 @@ class ChatService {
 		}).populate('users');
 
 		chats = await Promise.all(chats.map(async (chat) => {
-			let lastMessage = await messageModel.findOne({chat: chat._id}).sort({timestamp: -1}).populate("sender");
+			let lastMessage = await messageModel.findOne({chat: chat._id}).sort({createdAt: -1}).populate("sender");
 			chat = new ChatDto(chat, uid, lastMessage);
 			return chat;
 		}));

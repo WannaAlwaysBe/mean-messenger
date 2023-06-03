@@ -13,7 +13,9 @@ import { LocalStorageService } from './services/local-storage.service';
 import { NameIconPipe } from './pipes/name-icon.pipe';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { WebsocketService } from "./services/websocket/websocket.service";
+import { WebsocketService } from './services/websocket/websocket.service';
+import { EncryptionService } from './services/encryption.service';
+import { DecryptPipe } from './pipes/decrypt.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { WebsocketService } from "./services/websocket/websocket.service";
     NameIconPipe,
     PageLoaderComponent,
     FilterPipe,
+    DecryptPipe,
   ],
   exports: [
     BodyComponent,
@@ -35,6 +38,7 @@ import { WebsocketService } from "./services/websocket/websocket.service";
     NameIconPipe,
     PageLoaderComponent,
     FilterPipe,
+    DecryptPipe,
   ],
   imports: [
     CommonModule,
@@ -45,6 +49,6 @@ import { WebsocketService } from "./services/websocket/websocket.service";
     FormsModule,
     NbSpinnerModule,
   ],
-  providers: [LocalStorageService, WebsocketService],
+  providers: [LocalStorageService, WebsocketService, EncryptionService],
 })
 export class AppCommonModule { }

@@ -2,7 +2,7 @@
   <nb-chat [title]="getChatTitle(receiver, currentChat)">
     <nb-chat-message *ngFor="let msg of messages$ | async"
                      type="text"
-                     [message]="msg.text"
+                     [message]="msg.text | decrypt"
                      [reply]="msg.sender === currentUser.id"
                      [sender]="msg.sender === currentUser.id ? currentUser.username : receiver.username"
                      [date]="msg.timestamp"

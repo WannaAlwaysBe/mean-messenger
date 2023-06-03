@@ -7,6 +7,7 @@ import {User} from '@data-layer/user';
 import {ChatActionsService} from "@data-layer/chat";
 import {MessageDataService} from "@data-layer/message";
 import {Router} from "@angular/router";
+import {EncryptionService} from "@common";
 
 @Component({
   selector: 'app-messages-list',
@@ -30,11 +31,14 @@ export class MessagesListComponent {
     private chatDataService: ChatDataService,
     private chatActionsService: ChatActionsService,
     public messageDataService: MessageDataService,
+    private encryptionService: EncryptionService,
     private router: Router,
   ) {
   }
 
   public sendMessage(event: {message: string, files: any[]}, sender: User, receiver: User, currentChat: Chat | string) {
+    const encryptedMsg = this.encryptionService.encrypt(event.message);
+
     if (currentChat === 'newChat') {
       this.chatDataService.create({receiver: receiver.id});
       this.chatActionsService.createSuccess$.pipe(take(1)).subscribe(({chat}) => {
@@ -43,7 +47,7 @@ export class MessagesListComponent {
         this.messageDataService.send({
           sender: sender.id,
           chat: chat.id,
-          text: event.message,
+          text: encryptedMsg,
           receiver: receiver.id,
         });
       });
@@ -52,7 +56,7 @@ export class MessagesListComponent {
       this.messageDataService.send({
         sender: sender.id,
         chat: (currentChat as Chat).id,
-        text: event.message,
+        text: encryptedMsg,
         receiver: receiver.id,
       });
     }

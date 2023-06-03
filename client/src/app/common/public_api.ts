@@ -3,6 +3,8 @@ export * from './common.module';
 
 // Services
 export * from './services/local-storage.service';
+export * from './services/encryption.service';
+export * from './services/websocket/websocket.service';
 
 // Validators
 export * from './validators/validators.service';
@@ -17,6 +19,7 @@ export * from './page-loader/page-loader.component';
 
 // Pipes
 export * from './pipes/name-icon.pipe';
+export * from  './pipes/decrypt.pipe';
 
 // Interceptors
 export * from './interceptors/base-url.interceptor';

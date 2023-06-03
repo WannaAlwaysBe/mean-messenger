@@ -2,6 +2,6 @@
   <div class="icon" [ngStyle]="{'border-color': hex}">{{name | nameIcon}}</div>
   <div class="content">
     <div class="name">{{name}}</div>
-    <div *ngIf="lastMessage" class="last-message">{{lastMessage}}</div>
+    <div *ngIf="lastMessage" class="last-message">{{lastMessage | decrypt}}</div>
   </div>
 </div>
